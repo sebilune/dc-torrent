@@ -8,7 +8,7 @@ import {
   ChatInputCommandInteraction,
 } from "discord.js";
 
-// Import configuration (API tokens, client ID) from local config file
+// Import configuration (API tokens, client ID, optional role_id) from local config file
 import { config } from "./config.js";
 
 // Import individual command handler functions
@@ -56,10 +56,42 @@ client.once("ready", () => {
   console.log(`✅ Logged in as ${client.user?.tag}`);
 });
 
+/**
+ * Role-based access guard.
+ *
+ * If `config.role_id` is set, only allow users with that role
+ * to access the bot's slash commands.
+ * If no `role_id` is configured, allow all users.
+ *
+ * @returns true if the user is allowed, false otherwise
+ */
+async function hasRequiredRole(
+  command: ChatInputCommandInteraction
+): Promise<boolean> {
+  // If no role_id is configured, skip the check and allow all users
+  if (!config.role_id) return true;
+
+  // Fetch the full member object from the guild
+  const member = await command.guild?.members.fetch(command.user.id);
+  if (!member) return false;
+
+  // Check if the user has the required role
+  return member.roles.cache.has(config.role_id);
+}
+
 // Main interaction handler: listens for slash commands and routes them to appropriate handlers
 client.on("interactionCreate", async (interaction) => {
   // Ignore non-slash command interactions
   if (!interaction.isChatInputCommand()) return;
+
+  // Check if the user has the required role (if configured)
+  if (!(await hasRequiredRole(interaction))) {
+    await interaction.reply({
+      content: "❌ You do not have permission to use this bot.",
+      ephemeral: true, // Sends a private message only visible to the user
+    });
+    return;
+  }
 
   // Cast interaction to ChatInputCommandInteraction type for better type safety
   const command = interaction as ChatInputCommandInteraction;
