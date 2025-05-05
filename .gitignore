@@ -1,0 +1,30 @@
+# Node modules
+node_modules/
+
+# Bun lockfile
+bun.lockb
+
+# Build output
+dist/
+build/
+
+# Environment variables
+.env
+.env.*
+
+# Logs
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Migrating purposes
+config.json
+main.py
+requirements.txt
+env/
