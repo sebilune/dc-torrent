@@ -122,7 +122,7 @@ bun --version
 </details>
 </p>
 
-Or install with Homebrew:
+Or install with [Homebrew](https://docs.brew.sh/Homebrew-on-Linux):
 
 ```bash
 brew install bun
