@@ -75,7 +75,7 @@ curl -fsSL https://bun.sh/install | bash
 Or install with Homebrew:
 
 ```bash
-brew install bun
+brew install oven-sh/bun/bun
 ```
 
 ---
