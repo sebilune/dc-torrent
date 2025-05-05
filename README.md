@@ -72,13 +72,109 @@ Install via the official script:
 curl -fsSL https://bun.sh/install | bash
 ```
 
+<p>
+<details>
+<summary><strong>Errors? Open me</strong></summary>
+
+<p></p>
+
+If after installing through the official script you see errors like:
+
+```bash
+bun: command not found
+```
+
+you likely need to add Bun’s installation path to your shell’s environment. Bun installs by default to `$HOME/.bun`.
+
+To make sure it’s available in your terminal, you must add some lines to your shell configuration (by default `.bashrc` on Linux).
+
+**1. Open your `.bashrc` file**
+
+```bash
+nano ~/.bashrc
+```
+
+**2. Add these lines to the bottom:**
+
+```bash
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+```
+
+**3. Save and exit (in nano, press `Ctrl+O` then `Enter`, then `Ctrl+X`).**
+
+**4. Reload your shell:**
+
+```bash
+source ~/.bashrc
+```
+
+Once done, run:
+
+```bash
+bun --version
+```
+
+✅ If you see a version number, you’re all set.
+
+---
+
+</details>
+</p>
+
 Or install with Homebrew:
 
 ```bash
-brew install oven-sh/bun/bun
+brew install bun
 ```
 
+<p>
+<details>
+<summary><strong>Errors? Open me</strong></summary>
+
+<p></p>
+
+If this is your **first time installing Homebrew** on Linux, after running the install script,  
+you need to add the following to your shell configuration so `brew` works properly:
+
+```bash
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+```
+
+To make sure it’s available in your terminal, you must add some lines to your shell configuration (by default `.bashrc` on Linux).
+
+**1. Open your `.bashrc` file**
+
+```bash
+nano ~/.bashrc
+```
+
+**2. Add this line to the bottom:**
+
+```bash
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+```
+
+**3. Save and exit (in nano, press `Ctrl+O` then `Enter`, then `Ctrl+X`).**
+
+**4. Reload your shell:**
+
+```bash
+source ~/.bashrc
+```
+
+Once done, run:
+
+```bash
+brew --version
+```
+
+✅ If you see a version number, you’re all set.
+
 ---
+
+</details>
+</p>
 
 ## Installation & Setup
 
