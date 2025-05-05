@@ -205,8 +205,7 @@ The configuration file can be found in the source directory (dc-torrent), open `
 
 You can create and configure your bot token in the [Discord Developer Portal](https://discord.com/developers/applications).
 
-⚠ **Important:** Make sure your bot has all three **Privileged Gateway Intents** enabled.  
-You can turn these on in the [Discord Developer Portal](https://discord.com/developers/applications) under **Bot → Privileged Gateway Intents**.
+⚠ **Important:** Make sure your bot has all three **Privileged Gateway Intents** enabled. You can turn these on in the [Discord Developer Portal](https://discord.com/developers/applications) under **Bot → Privileged Gateway Intents**.
 
 - `Presence Intent`: Required for your bot to receive Presence Update events.
 - `Server Members Intent`: Required for your bot to receive events listed under GUILD_MEMBERS.
