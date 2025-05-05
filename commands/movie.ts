@@ -36,7 +36,6 @@ export async function handleMovieCommand(command: ChatInputCommandInteraction) {
     );
 
   await command.editReply({
-    content: "Select a movie:",
     components: [
       new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(selectMenu),
     ],
