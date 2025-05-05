@@ -23,8 +23,5 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Migrating purposes
+# User safety
 config.json
-main.py
-requirements.txt
-env/
