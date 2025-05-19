@@ -45,9 +45,9 @@ const commands = [
     await rest.put(Routes.applicationCommands(config.client_id), {
       body: commands,
     });
-    console.log("✅ Commands registered.");
+    console.log("[INFO]: Commands registered.");
   } catch (err) {
-    console.error("❌ Failed to register commands:", err);
+    console.error("[ERROR]: Failed to register commands:", err);
   }
 })();
 
