@@ -17,14 +17,19 @@ const MAX_DISPLAY = 10;
 export async function handleStatusCommand(
   command: ChatInputCommandInteraction
 ) {
+  console.log("[INFO]: Received /status command");
+
   // Acknowledge the command to prevent timeout while processing
   await command.deferReply();
+  console.log("[INFO]: Command deferred, fetching torrent list...");
 
   // Fetch the list of current torrents
   const torrents = await getTorrents();
+  console.log(`[INFO]: Retrieved ${torrents.length} torrents from qBittorrent`);
 
   // If no torrents are active, send a simple "empty queue" message
   if (!torrents.length) {
+    console.log("[WARN]: Torrent queue is empty, notifying user...");
     await command.editReply({
       embeds: [
         new EmbedBuilder()
@@ -35,6 +40,7 @@ export async function handleStatusCommand(
     return;
   }
 
+  console.log("[INFO]: Building torrent status embed...");
   // Map internal qBittorrent states to more user-friendly labels
   const stateMap: Record<string, string> = {
     downloading: "Downloading",
@@ -54,6 +60,9 @@ export async function handleStatusCommand(
   torrents.slice(0, MAX_DISPLAY).forEach((torrent: Torrent, i) => {
     const progress = `${(torrent.progress * 100).toFixed(2)}%`;
     const friendlyStatus = stateMap[torrent.state] || torrent.state;
+    console.log(
+      `[INFO]: Adding torrent to embed: ${torrent.name} – Status: ${friendlyStatus}, Progress: ${progress}`
+    );
     embed.addFields({
       name: `${i + 1}️⃣ ${torrent.name}`,
       value: `**${friendlyStatus}** – Progress: ${progress}`,
@@ -62,12 +71,19 @@ export async function handleStatusCommand(
 
   // If there are more torrents than we display, add a summary line
   if (torrents.length > MAX_DISPLAY) {
+    console.log(
+      `[INFO]: More torrents exist than displayed. Adding summary for ${
+        torrents.length - MAX_DISPLAY
+      } additional torrents.`
+    );
     embed.addFields({
       name: "⏬ More Torrents",
       value: `...and ${torrents.length - MAX_DISPLAY} more`,
     });
   }
 
+  console.log("[INFO]: Sending torrent status embed to user...");
   // Send the final embed reply back to the user
   await command.editReply({ embeds: [embed] });
+  console.log("[INFO]: Torrent status embed sent successfully.");
 }
