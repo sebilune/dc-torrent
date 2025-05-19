@@ -9,7 +9,7 @@ import {
 } from "discord.js";
 
 // Import configuration (API tokens, client ID, optional role_id) from local config file
-import { config } from "./config";
+import { config } from "./utils/config";
 
 // Import individual command handler functions
 import { handleMovieCommand } from "./commands/movie";
