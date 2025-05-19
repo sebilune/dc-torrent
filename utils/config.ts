@@ -1,6 +1,3 @@
-import * as fs from "fs/promises";
-import { resolve } from "path";
+const path = import.meta.dir + "/../config.json";
 
-const path = resolve(__dirname, "../config.json");
-
-export const config = JSON.parse(await fs.readFile(path, "utf-8"));
+export const config = JSON.parse(await Bun.file(path).text());
