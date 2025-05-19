@@ -53,7 +53,7 @@ const commands = [
 
 // Log event handler: fires once when the bot is successfully connected
 client.once("ready", () => {
-  console.log(`✅ Logged in as ${client.user?.tag}`);
+  console.log(`[INFO]: Logged in as ${client.user?.tag}`);
 });
 
 /**
