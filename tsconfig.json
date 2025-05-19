@@ -14,6 +14,12 @@
     "verbatimModuleSyntax": false,
     "noEmit": true,
 
+    // Path aliasing
+    "baseUrl": ".", // root of the project
+    "paths": {
+      "@/*": ["./*"]
+    },
+
     // Best practices
     "strict": true,
     "skipLibCheck": true,

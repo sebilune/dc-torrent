@@ -2,7 +2,7 @@
 import { ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
 
 // Import qBittorrent utility functions and Torrent type definition
-import { getTorrents, type Torrent } from "../utils/qbittorrent";
+import { getTorrents, type Torrent } from "@/utils/qbittorrent";
 
 // Define the maximum number of torrents to display in a single response
 const MAX_DISPLAY = 10;

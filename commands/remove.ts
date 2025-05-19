@@ -2,7 +2,7 @@
 import { ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
 
 // Import qBittorrent utility functions for retrieving and removing torrents
-import { getTorrents, removeTorrent } from "../utils/qbittorrent";
+import { getTorrents, removeTorrent } from "@/utils/qbittorrent";
 
 /*
  * Handle the /remove command.
