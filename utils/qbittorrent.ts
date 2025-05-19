@@ -1,5 +1,5 @@
 import axios from "axios";
-import { config } from "../config.js";
+import { config } from "../config";
 
 const qbApi = axios.create({
   baseURL: config.qbittorrent_url,

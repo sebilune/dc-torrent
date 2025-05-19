@@ -8,10 +8,10 @@ import {
 } from "discord.js";
 
 // Import utility functions for searching movies and selecting torrents
-import { searchMovies, getBestTorrent } from "../utils/yts.js";
+import { searchMovies, getBestTorrent } from "../utils/yts";
 
 // Import qBittorrent helper for adding torrents
-import { addTorrent } from "../utils/qbittorrent.js";
+import { addTorrent } from "../utils/qbittorrent";
 
 /*
  * Handle the /movie command.

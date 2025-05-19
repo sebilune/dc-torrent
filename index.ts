@@ -9,12 +9,12 @@ import {
 } from "discord.js";
 
 // Import configuration (API tokens, client ID, optional role_id) from local config file
-import { config } from "./config.js";
+import { config } from "./config";
 
 // Import individual command handler functions
-import { handleMovieCommand } from "./commands/movie.js";
-import { handleStatusCommand } from "./commands/status.js";
-import { handleRemoveCommand } from "./commands/remove.js";
+import { handleMovieCommand } from "./commands/movie";
+import { handleStatusCommand } from "./commands/status";
+import { handleRemoveCommand } from "./commands/remove";
 
 // Create a new Discord client instance with the Guilds intent (enables slash commands)
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
