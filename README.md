@@ -2,17 +2,17 @@
 
 A **Discord bot** that lets you search, queue, and manage torrents via qBittorrent directly from Discord slash commands. It was founded for the purpose to allow me and my friends to quickly add our entertainment needs to my plex server remotely.
 
-It integrates with:
+Integration:
 
-- **YTS API** – search for torrents
-- **qBittorrent-nox** – queue and manage torrents
-- **Bun** – fast runtime for JavaScript/TypeScript
+- **YTS API**: search for torrents
+- **qBittorrent-nox**: queue and manage torrents
+- **Bun**: fast runtime for JavaScript/TypeScript
 
 ---
 
 ## Index
 
-- [📥 dc-torrent](#-dc-torrent)
+- [dc-torrent](#-dc-torrent)
   - [Index](#index)
   - [Features](#features)
   - [Requirements](#requirements)
@@ -21,25 +21,25 @@ It integrates with:
     - [Bun](#bun)
   - [Installation \& Setup](#installation--setup)
   - [Available Commands](#available-commands)
-  - [🔐 Optional: Role-Based Access](#-optional-role-based-access)
+  - [Role-Based Access](#-optional-role-based-access)
   - [License](#license)
 
 ---
 
 ## Features
 
-- ✅ Slash command support
-- ✅ Search and download movies from YTS
-- ✅ Queue torrents into qBittorrent
-- ✅ Check current torrent status
-- ✅ Remove torrents from the queue
-- ✅ Optional role-based access control
+- Slash command support
+- Search and download movies from YTS
+- Queue torrents into qBittorrent
+- Check current torrent status
+- Remove torrents from queue
+- Optional role-based access control
 
 ---
 
 ## Requirements
 
-You’ll need the following installed on your Linux machine:
+You’ll need the following installed:
 
 ### qBittorrent-nox
 
@@ -115,7 +115,7 @@ Once done, run:
 bun --version
 ```
 
-✅ If you see a version number, you’re all set.
+If you see a version number, you’re all set.
 
 ---
 
@@ -169,7 +169,7 @@ Once done, run:
 brew --version
 ```
 
-✅ If you see a version number, you’re all set.
+If you see a version number, you’re all set.
 
 ---
 
@@ -205,7 +205,7 @@ The configuration file can be found in the source directory (dc-torrent), open `
 
 You can create and configure your bot token in the [Discord Developer Portal](https://discord.com/developers/applications).
 
-⚠ **Important:** Make sure your bot has all three **Privileged Gateway Intents** enabled. You can turn these on in the [Discord Developer Portal](https://discord.com/developers/applications) under **Bot → Privileged Gateway Intents**.
+**Important:** Make sure your bot has all three **Privileged Gateway Intents** enabled. You can turn these on in the [Discord Developer Portal](https://discord.com/developers/applications) under **Bot → Privileged Gateway Intents**.
 
 - `Presence Intent`: Required for your bot to receive Presence Update events.
 - `Server Members Intent`: Required for your bot to receive events listed under GUILD_MEMBERS.
@@ -231,7 +231,7 @@ On startup, it will register slash commands and begin listening for interactions
 
 ---
 
-## 🔐 Optional: Role-Based Access
+## Optional: Role-Based Access
 
 If you set a `role_id` in `config.json`, only users with that role will be able to use the bot’s commands.
 
