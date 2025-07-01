@@ -1,6 +1,6 @@
-# 📥 dc-torrent
+# 📥 Discord Movie Torrent Bot
 
-A **Discord bot** that lets you search, queue, and manage torrents via qBittorrent directly from Discord slash commands. It was founded for the purpose to allow me and my friends to quickly add our entertainment needs to my plex server remotely.
+A **Discord bot** that lets you search, queue, and manage movie torrents via qBittorrent directly from Discord slash commands. It was founded for the purpose to allow me and my friends to quickly add our entertainment needs to my plex server remotely.
 
 Integration:
 
@@ -8,23 +8,14 @@ Integration:
 - **qBittorrent-nox**: queue and manage torrents
 - **Bun**: fast runtime for JavaScript/TypeScript
 
----
-
 ## Index
 
-- [dc-torrent](#-dc-torrent)
-  - [Index](#index)
-  - [Features](#features)
-  - [Requirements](#requirements)
-    - [qBittorrent-nox](#qbittorrent-nox)
-      - [Ubuntu/Debian](#ubuntudebian)
-    - [Bun](#bun)
-  - [Installation \& Setup](#installation--setup)
-  - [Available Commands](#available-commands)
-  - [Role-Based Access](#-optional-role-based-access)
-  - [License](#license)
-
----
+- [Features](#features)
+- [Requirements](#requirements)
+- [Installation \& Setup](#installation--setup)
+- [Available Commands](#available-commands)
+- [Role-Based Access](#optional-role-based-access)
+- [License](#license)
 
 ## Features
 
@@ -35,17 +26,16 @@ Integration:
 - Remove torrents from queue
 - Optional role-based access control
 
----
-
 ## Requirements
 
 You’ll need the following installed:
 
-### qBittorrent-nox
+- `qbittorent-nox`: qBittorrent’s headless version that runs in the background.
+- `bun`: Fast all-in-one JavaScript runtime.
 
-qBittorrent’s headless version that runs in the background.
+### qBittorent-Nox
 
-#### Ubuntu/Debian
+Ubuntu/Debian
 
 Install it with:
 
@@ -64,7 +54,7 @@ By default, it exposes a web UI at `http://localhost:8080`. You'll need to confi
 
 ### Bun
 
-[Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+Linux
 
 Install via the official script:
 
@@ -116,8 +106,6 @@ bun --version
 ```
 
 If you see a version number, you’re all set.
-
----
 
 </details>
 </p>
@@ -171,8 +159,6 @@ brew --version
 
 If you see a version number, you’re all set.
 
----
-
 </details>
 </p>
 
@@ -219,8 +205,6 @@ bun run index.ts
 
 On startup, it will register slash commands and begin listening for interactions.
 
----
-
 ## Available Commands
 
 | Command   | Description                                  |
@@ -229,17 +213,12 @@ On startup, it will register slash commands and begin listening for interactions
 | `/status` | Check the current status of active torrents  |
 | `/remove` | Remove a torrent by name from qBittorrent    |
 
----
-
 ## Optional: Role-Based Access
 
 If you set a `role_id` in `config.json`, only users with that role will be able to use the bot’s commands.
 
 Leave it empty or remove the field to allow everyone access.
 
----
-
 ## License
 
-MIT License  
-© [sebilune](https://github.com/sebilune)
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more information.
