@@ -1,6 +1,7 @@
 # 📥 Discord Movie Torrent Bot
 
 ![License](https://img.shields.io/github/license/sebilune/dc-torrent)
+![Code Size (bytes)](https://img.shields.io/github/languages/code-size/sebilune/dc-torrent)
 ![Repo Size](https://img.shields.io/github/repo-size/sebilune/dc-torrent)
 ![Last Commit](https://img.shields.io/github/last-commit/sebilune/dc-torrent)
 
