@@ -1,5 +1,9 @@
 # 📥 Discord Movie Torrent Bot
 
+![License](https://img.shields.io/github/license/sebilune/dc-torrent)
+![Repo Size](https://img.shields.io/github/repo-size/sebilune/dc-torrent)
+![Last Commit](https://img.shields.io/github/last-commit/sebilune/dc-torrent)
+
 A **Discord bot** that lets you search, queue, and manage movie torrents via qBittorrent directly from Discord slash commands. It was founded for the purpose to allow me and my friends to quickly add our entertainment needs to my plex server remotely.
 
 Integration:
