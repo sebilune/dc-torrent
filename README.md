@@ -16,13 +16,11 @@ Integration:
 
 ## Index
 
-- [📥 Discord Movie Torrent Bot](#-discord-movie-torrent-bot)
-  - [Index](#index)
-  - [Features](#features)
-  - [Quick Start](#quick-start)
-  - [Available Commands](#available-commands)
-  - [Optional: Role-Based Access](#optional-role-based-access)
-  - [License](#license)
+- [Features](#features)
+- [Quick Start](#quick-start)
+- [Available Commands](#available-commands)
+- [Optional: Role-Based Access](#optional-role-based-access)
+- [License](#license)
 
 ## Features
 
