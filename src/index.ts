@@ -64,8 +64,13 @@ client.once("ready", () => {
 async function hasRequiredRole(
   command: ChatInputCommandInteraction
 ): Promise<boolean> {
-  // If no role_id is configured, allow all users
-  if (!config.role_id) return true;
+  // If no role_id is configured, empty, or too short, allow all users
+  if (
+    !config.role_id ||
+    typeof config.role_id !== "string" ||
+    config.role_id.length < 16
+  )
+    return true;
 
   // Fetch the full member object from the guild
   const member = await command.guild?.members.fetch(command.user.id);
