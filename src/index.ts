@@ -1,4 +1,3 @@
-// Import necessary Discord.js classes and types
 import {
   Client,
   GatewayIntentBits,
@@ -8,10 +7,8 @@ import {
   ChatInputCommandInteraction,
 } from "discord.js";
 
-// Import configuration (API tokens, client ID, optional role_id) from local config file
 import { config } from "@/utils/config";
 
-// Import individual command handler functions
 import { handleMovieCommand } from "./commands/movie";
 import { handleStatusCommand } from "./commands/status";
 import { handleRemoveCommand } from "./commands/remove";
@@ -38,7 +35,7 @@ const commands = [
     ),
 ];
 
-// Register slash commands with the Discord API using REST
+// Register slash commands with Discord
 (async () => {
   const rest = new REST({ version: "10" }).setToken(config.bot_token);
   try {
@@ -51,7 +48,6 @@ const commands = [
   }
 })();
 
-// Log event handler: fires once when the bot is successfully connected
 client.once("ready", () => {
   console.log(`[INFO]: Logged in as ${client.user?.tag}`);
 });
@@ -68,7 +64,7 @@ client.once("ready", () => {
 async function hasRequiredRole(
   command: ChatInputCommandInteraction
 ): Promise<boolean> {
-  // If no role_id is configured, skip the check and allow all users
+  // If no role_id is configured, allow all users
   if (!config.role_id) return true;
 
   // Fetch the full member object from the guild
@@ -102,5 +98,5 @@ client.on("interactionCreate", async (interaction) => {
   if (command.commandName === "remove") await handleRemoveCommand(command);
 });
 
-// Log the bot in using the configured bot token
+// Log the bot in
 client.login(config.bot_token);

@@ -1,18 +1,16 @@
-// Import necessary Discord.js types and classes
 import { ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
 
-// Import qBittorrent utility functions and Torrent type definition
 import { getTorrents, type Torrent } from "@/utils/qbittorrent";
 
 // Define the maximum number of torrents to display in a single response
 const MAX_DISPLAY = 10;
 
 /*
- * Handle the /status command.
+ * /status
  *
- * This command retrieves the current list of torrents from qBittorrent,
- * builds a nicely formatted embed message summarizing their status,
- * and replies to the user.
+ * Retrieves the current list of torrents from qBittorrent,
+ * builds a formatted embed message summarizing their status,
+ * progress, queue position, and replies to the user.
  */
 export async function handleStatusCommand(
   command: ChatInputCommandInteraction

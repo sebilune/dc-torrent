@@ -1,4 +1,3 @@
-// Import necessary Discord.js types and classes
 import {
   ChatInputCommandInteraction,
   EmbedBuilder,
@@ -7,16 +6,20 @@ import {
   StringSelectMenuInteraction,
 } from "discord.js";
 
-// Import utility functions for searching movies and selecting torrents
 import { searchMovies, getBestTorrent } from "@/utils/yts";
 
-// Import qBittorrent helper for adding torrents
 import { addTorrent } from "@/utils/qbittorrent";
 
+// Track active collectors and last select menu message per channel+user
+const activeMovieCollectors = new Map<
+  string,
+  { collector: any; messageId: string }
+>();
+
 /*
- * Handle the /movie command.
+ * /movie
  *
- * This command allows a user to search for a movie via YTS,
+ * Allows a user to search for a movie via YTS,
  * select the desired movie from a dropdown, and queue its best-quality
  * torrent (preferably 1080p) in qBittorrent.
  */
@@ -61,19 +64,40 @@ export async function handleMovieCommand(command: ChatInputCommandInteraction) {
       }))
     );
 
-  console.log("[INFO]: Sending select menu to user...");
-  // Send the select menu to the user
-  await command.editReply({
+  // Send the select menu to the user and save the message ID
+  const replyMsg = await command.editReply({
     components: [
       new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(selectMenu),
     ],
   });
 
-  console.log("[INFO]: Setting up collector for user interaction...");
+  const channelId = command.channelId;
+  const userId = command.user.id;
+  const collectorKey = `${channelId}:${userId}`;
+
+  // If there's an active collector for this user/channel, disable its select menu
+  const prev = activeMovieCollectors.get(collectorKey);
+  if (prev && command.channel) {
+    try {
+      const prevMsg = await command.channel.messages.fetch(prev.messageId);
+      await prevMsg.edit({ components: [] });
+    } catch (e) {
+      // Ignore if message can't be fetched/edited
+    }
+    prev.collector?.stop();
+  }
+
   // Set up a collector to handle the user's selection from the dropdown
   const collector = command.channel?.createMessageComponentCollector({
     componentType: 3, // Select menu component type
-    time: 60000, // Collector timeout (60 seconds)
+    time: 60000, // Collector timeout (60s)
+    filter: (i) => i.user.id === userId,
+  });
+
+  // Save this collector and message
+  activeMovieCollectors.set(collectorKey, {
+    collector,
+    messageId: replyMsg.id,
   });
 
   collector?.on(
@@ -88,11 +112,14 @@ export async function handleMovieCommand(command: ChatInputCommandInteraction) {
 
       // Validate selected movie
       if (!selectedMovie) {
-        console.log("[WARN]: Invalid movie selection, notifying user...");
-        await menuInteraction.reply({
-          content: "Invalid movie selection.",
-          ephemeral: true,
-        });
+        try {
+          await menuInteraction.reply({
+            content: "Invalid movie selection.",
+            flags: 64, // ephemeral
+          });
+        } catch (err: any) {
+          if (err.code !== 10062) throw err;
+        }
         return;
       }
 
@@ -102,11 +129,14 @@ export async function handleMovieCommand(command: ChatInputCommandInteraction) {
       // Get the best available torrent for the selected movie
       const torrent = getBestTorrent(selectedMovie);
       if (!torrent) {
-        console.log("[WARN]: No valid torrent found, notifying user...");
-        await menuInteraction.reply({
-          content: "No valid torrent found.",
-          ephemeral: true,
-        });
+        try {
+          await menuInteraction.reply({
+            content: "No valid torrent found.",
+            flags: 64, // ephemeral
+          });
+        } catch (err: any) {
+          if (err.code !== 10062) throw err;
+        }
         return;
       }
 
@@ -116,22 +146,26 @@ export async function handleMovieCommand(command: ChatInputCommandInteraction) {
       // Attempt to add the torrent to qBittorrent
       const added = await addTorrent(torrent.url);
       if (added) {
-        console.log(
-          `[INFO]: Torrent added successfully: ${selectedMovie.title} (${torrent.quality})`
-        );
         const embed = new EmbedBuilder()
           .setTitle("Download Queued")
           .setDescription(
             `**${selectedMovie.title} (${torrent.quality})** has been added to qBittorrent.`
           )
           .setColor("Green");
-        await menuInteraction.reply({ embeds: [embed] });
+        try {
+          await menuInteraction.reply({ embeds: [embed] });
+        } catch (err: any) {
+          if (err.code !== 10062) throw err;
+        }
       } else {
-        console.log("[ERROR]: Failed to add torrent, notifying user...");
-        await menuInteraction.reply({
-          content: "Failed to add torrent.",
-          ephemeral: true,
-        });
+        try {
+          await menuInteraction.reply({
+            content: "Failed to add torrent.",
+            flags: 64, // ephemeral
+          });
+        } catch (err: any) {
+          if (err.code !== 10062) throw err;
+        }
       }
 
       console.log("[INFO]: Stopping collector after interaction...");
@@ -140,7 +174,13 @@ export async function handleMovieCommand(command: ChatInputCommandInteraction) {
     }
   );
 
-  collector?.on("end", (collected, reason) => {
+  collector?.on("end", async (collected, reason) => {
+    // Remove the select menu when collector ends
+    try {
+      const msg = await command.channel?.messages.fetch(replyMsg.id);
+      await msg?.edit({ components: [] });
+    } catch (e) {}
+    activeMovieCollectors.delete(collectorKey);
     console.log(
       `[INFO]: Collector ended. Reason: ${reason}. Collected interactions: ${collected.size}`
     );

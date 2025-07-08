@@ -1,13 +1,11 @@
-// Import necessary Discord.js types and classes
 import { ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
 
-// Import qBittorrent utility functions for retrieving and removing torrents
 import { getTorrents, removeTorrent } from "@/utils/qbittorrent";
 
 /*
- * Handle the /remove command.
+ * /remove
  *
- * This command searches for a torrent by name (partial match),
+ * Searches for a torrent by name (partial match),
  * attempts to remove it from qBittorrent,
  * and replies to the user with the result.
  */
