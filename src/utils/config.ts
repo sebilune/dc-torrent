@@ -1,5 +1,3 @@
-import "dotenv/config";
-
 export const config = {
   bot_token: process.env.BOT_TOKEN!,
   client_id: process.env.CLIENT_ID!,

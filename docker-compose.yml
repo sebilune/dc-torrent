@@ -1,0 +1,19 @@
+services:
+  dc-torrent:
+    image: dc-torrent:latest
+    ports:
+      - "8080:8080" # Web UI
+      - "16000:16000" # Torrenting (TCP)
+      - "16000:16000/udp" # Torrenting (UDP)
+    environment:
+      BOT_TOKEN: "abc123" # Replace with your bot token
+      CLIENT_ID: 1234 # Replace with your client ID
+      ROLE_ID: 123 # Replace with role ID (only users with this role will be able to access the bot, optional)
+      QBITTORRENT_URL: http://host.docker.internal:8080
+      QBITTORRENT_USERNAME: admin
+      QBITTORRENT_PASSWORD: adminadmin
+    restart: unless-stopped
+    volumes:
+      # Bind your movies directory to the container
+      # (e.g., /home/ladiesman217/cool-films:/movies)
+      - /path/to/your/movies:/movies # Keep ':/movies' as is

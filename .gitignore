@@ -11,6 +11,10 @@ build/
 # Environment variables
 .env
 
+# Docker
+*.dev.yml
+docker-compose.override.yml
+
 # Logs
 *.log
 
