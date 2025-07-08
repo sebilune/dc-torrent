@@ -110,7 +110,7 @@ docker compose -f docker-compose.yml up -d
 To view the logs of the detatched container:
 
 ```bash
-docker compose -f docker-compose.yml logs
+docker compose -f docker-compose.yml logs -f
 ```
 
 To stop and remove the container:
