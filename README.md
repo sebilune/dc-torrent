@@ -122,6 +122,12 @@ To view the logs of the detatched container:
 docker compose -f docker-compose.yml logs
 ```
 
+To stop and remove the container:
+
+```bash
+docker compose -f docker-compose.yml down
+```
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more information.
