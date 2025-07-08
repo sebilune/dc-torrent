@@ -7,13 +7,6 @@
 
 A Dockerized **Discord bot** that lets you search, download, and manage movie torrents to your media directory directly from Discord slash commands. It was founded for the purpose to allow me and my friends to quickly add our entertainment needs to my plex server remotely.
 
-Integration:
-
-- **Docker**: Easy deployment, no manual setup
-- **Bun**: Fast runtime for JavaScript/TypeScript
-- **YTS API**: Search for torrents
-- **qBittorrent-nox**: Minimal open-source torrent client with WebUI
-
 ## Index
 
 - [📥 Discord Movie Torrent Bot](#-discord-movie-torrent-bot)
