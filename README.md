@@ -79,23 +79,22 @@ docker start dc-torrent
 
 ## Manual Installation
 
-**1. Dependecies:**
 Ensure you have [Git](https://git-scm.com/downloads) and [Docker](https://www.docker.com/) installed on your system.
 
-**2. Clone the repository:**
+**1. Clone the repository:**
 
 ```bash
 git clone https://github.com/sebilune/dc-torrent.git
 cd dc-torrent
 ```
 
-**3. Build the Docker image:**
+**2. Build the Docker image:**
 
 ```bash
 docker build --network=host -t dc-torrent .
 ```
 
-**4. Edit your configuration:**
+**3. Edit your configuration:**
 
 - Edit [docker-compose.yml](./docker-compose.yml) to set your environment variables:
   - `BOT_TOKEN`: Your Discord bot token
@@ -103,7 +102,7 @@ docker build --network=host -t dc-torrent .
   - `ROLE_ID` Only allow users with this server role to run commands (optional, leave empty to allow all users)
 - In the `volumes` section of the compose file, bind your movies directory to the container.
 
-**5. Start the container:**
+**4. Start the container:**
 
 ```bash
 docker compose -f docker-compose.yml up
