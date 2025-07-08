@@ -9,13 +9,11 @@ A Dockerized **Discord bot** that lets you search, download, and manage movie to
 
 ## Index
 
-- [📥 Discord Movie Torrent Bot](#-discord-movie-torrent-bot)
-  - [Index](#index)
-  - [Features](#features)
-  - [Available Commands](#available-commands)
-  - [Quick Start](#quick-start)
-  - [Manual Installation](#manual-installation)
-  - [License](#license)
+- [Features](#features)
+- [Available Commands](#available-commands)
+- [Quick Start](#quick-start)
+- [Manual Installation](#manual-installation)
+- [License](#license)
 
 ## Features
 
