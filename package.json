@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "@types/node": "^24.0.10"
+    "@types/node": "^24.0.11"
   },
   "peerDependencies": {
     "typescript": "^5"
