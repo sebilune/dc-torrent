@@ -61,11 +61,11 @@ export async function handleStatusCommand(
     const progress = `${(torrent.progress * 100).toFixed(2)}%`;
     const friendlyStatus = stateMap[torrent.state] || torrent.state;
     console.log(
-      `[INFO]: Adding torrent to embed: ${torrent.name} – Status: ${friendlyStatus}, Progress: ${progress}`
+      `[INFO]: Adding torrent to embed: ${torrent.name} - Status: ${friendlyStatus}, Progress: ${progress}`
     );
     embed.addFields({
       name: `${i + 1}️⃣ ${torrent.name}`,
-      value: `**${friendlyStatus}** – Progress: ${progress}`,
+      value: `**${friendlyStatus}** - Progress: ${progress}`,
     });
   });
 

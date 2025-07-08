@@ -17,7 +17,7 @@
     // Path aliasing
     "baseUrl": ".", // root of the project
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["src/*"]
     },
 
     // Best practices
