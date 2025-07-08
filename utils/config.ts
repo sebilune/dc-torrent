@@ -1,3 +1,10 @@
-const path = import.meta.dir + "/../config.json";
+import "dotenv/config";
 
-export const config = JSON.parse(await Bun.file(path).text());
+export const config = {
+  bot_token: process.env.BOT_TOKEN!,
+  client_id: process.env.CLIENT_ID!,
+  role_id: process.env.ROLE_ID,
+  qbittorrent_url: process.env.QBITTORRENT_URL!,
+  qbittorrent_username: process.env.QBITTORRENT_USERNAME!,
+  qbittorrent_password: process.env.QBITTORRENT_PASSWORD!,
+};

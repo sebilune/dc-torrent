@@ -186,13 +186,19 @@ bun install
 
 **3. Configure the bot**
 
-The configuration file can be found in the source directory (dc-torrent), open `config.json` in your preffered text editor and fill in the following:
+Copy the example environment file and fill in your credentials:
 
-- `bot_token`: Your Discord bot token
-- `client_id`: Your bot’s client ID
-- `qbittorrent_url`: Usually `http://localhost:8080/`
-- `qbittorrent_username` and `qbittorrent_password`: Your Web UI login. Defaults are included.
-- `role_id` (optional): Only allow users with this server role to run commands
+```bash
+cp .env.example .env
+```
+
+Open `.env` in your preferred text editor and fill in the following:
+
+- `BOT_TOKEN`: Your Discord bot token
+- `CLIENT_ID`: Your bot’s client ID
+- `QBITTORRENT_URL`: Usually `http://localhost:8080/`
+- `QBITTORRENT_USERNAME` and `QBITTORRENT_PASSWORD`: Your Web UI login. Defaults are included.
+- `ROLE_ID` (optional): Only allow users with this server role to run commands
 
 You can create and configure your bot token in the [Discord Developer Portal](https://discord.com/developers/applications).
 
@@ -220,7 +226,7 @@ On startup, it will register slash commands and begin listening for interactions
 
 ## Optional: Role-Based Access
 
-If you set a `role_id` in `config.json`, only users with that role will be able to use the bot’s commands.
+If you set a `ROLE_ID` in your `.env`, only users with that role will be able to use the bot’s commands.
 
 Leave it empty or remove the field to allow everyone access.
 
