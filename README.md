@@ -13,6 +13,7 @@ Dockerized **Discord bot** that lets you search, download, and manage movie torr
 - [Available Commands](#available-commands)
 - [Quick Start](#quick-start)
 - [Manual Installation](#manual-installation)
+- [Disclaimer](#disclaimer)
 - [License](#license)
 
 ## Features
@@ -118,6 +119,11 @@ To stop and remove the container:
 ```bash
 docker compose -f docker-compose.yml down
 ```
+
+## Disclaimer
+
+This project is provided for educational and personal use only. The author does not endorse piracy or the downloading of copyrighted content.
+Users are responsible for ensuring their actions comply with local laws and terms of service of third-party providers.
 
 ## License
 
