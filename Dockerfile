@@ -21,9 +21,6 @@ FROM oven/bun:alpine AS runtime
 
 WORKDIR /app
 
-# Install Runtime dependencies
-RUN apk add --no-cache libstdc++ tzdata
-
 # Copy from builder
 COPY --from=builder /app /app
 COPY --from=builder /usr/local/bin/qbittorrent-nox /usr/local/bin/qbittorrent-nox
