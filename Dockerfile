@@ -1,29 +1,26 @@
-FROM debian:bookworm-slim
+FROM oven/bun:alpine
 
-# Dependencies
-RUN apt-get update && \
-    apt-get install -y curl ca-certificates git unzip qbittorrent-nox && \
-    rm -rf /var/lib/apt/lists/*
+# Runtime dependencies
+RUN apk add --no-cache curl unzip libstdc++ tzdata
 
-# Install Bun
-RUN curl -fsSL https://bun.sh/install | bash
-ENV BUN_INSTALL="/root/.bun"
-ENV PATH="${BUN_INSTALL}/bin:${PATH}"
+# Download qBittorrent-nox static binary
+ENV QBT_VERSION=5.1.2
+RUN curl -L "https://github.com/userdocs/qbittorrent-nox-static/releases/download/release-${QBT_VERSION}_v2.0.11/x86_64-qbittorrent-nox" \
+    -o /usr/local/bin/qbittorrent-nox && \
+    chmod +x /usr/local/bin/qbittorrent-nox
 
 WORKDIR /app
 
-# Copy package and lock files
+# Install Bun dependencies
 COPY package.json bun.lock ./
-
-# Bun dependencies
 RUN bun install
 
-# Copy source code
+# Copy application source
 COPY . .
 
-# Copy qBittorrent.conf to its expected location
-RUN mkdir -p /root/.config/qBittorrent && \
-    cp qBittorrent.conf /root/.config/qBittorrent/qBittorrent.conf
+# Setup qBittorrent config
+RUN mkdir -p /root/.config/qBittorrent
+COPY qBittorrent.conf /root/.config/qBittorrent/qBittorrent.conf
 
-# Run qBittorrent-nox in the background, then start bot
+# Start qBittorrent-nox and the bot
 CMD ["sh", "-c", "qbittorrent-nox & exec bun run src/index.ts"]
