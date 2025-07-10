@@ -1,14 +1,12 @@
-# Node modules
+# Node/Bun dependencies
 node_modules/
-
-# Bun lockfile
 bun.lockb
 
 # Build output
 dist/
 build/
 
-# Environment variables
+# Environment
 .env
 
 # Docker
@@ -20,11 +18,7 @@ docker-compose.override.yml
 
 # System files
 .DS_Store
-Thumbs.db
 
 # IDE files
 .vscode/
 .idea/
-
-# User safety
-config.json
