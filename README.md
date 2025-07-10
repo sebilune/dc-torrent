@@ -51,7 +51,11 @@ cd dc-torrent
 bash setup.sh
 ```
 
-This script will prompt you for your Discord bot credentials, config, and movies directory, then it will automatically build the Docker image, and start the container in detached mode. You can view logs with:
+This script will prompt you for your Discord bot credentials, config, and movies directory, then it will automatically build the Docker image, and start the container in detached mode. 
+
+The qBittorrent Web UI will be available at `http://localhost:8080` by default with the user `admin` and password `adminadmin`. 
+
+You can view logs with:
 
 ```bash
 docker logs -f dc-torrent
