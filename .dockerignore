@@ -1,0 +1,32 @@
+# Node/Bun dependencies
+node_modules
+bun.lockb
+
+# Build output
+dist/
+build/
+
+# Environment
+.env
+
+# Docker
+*.dev.yml
+docker-compose.override.yml
+
+# Logs
+*.log
+
+# Git
+.git
+.gitignore
+
+# System files
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+
+# Docs
+README.md
+LICENSE
